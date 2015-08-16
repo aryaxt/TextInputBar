@@ -82,7 +82,6 @@ import UIKit
 		placeholderTextView.contentOffset = contentOffset
 		placeholderTextView.contentInset = contentInset
 		placeholderTextView.font = font
-		
 		updatePlaceholderVisibility()
 	}
 	

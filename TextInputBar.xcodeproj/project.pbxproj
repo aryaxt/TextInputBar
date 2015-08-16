@@ -515,6 +515,7 @@
 				15D9270E1B80E4D100AF3437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15D9270F1B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBarTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +524,7 @@
 				15D927111B80E4D100AF3437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15D927121B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBarUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +533,7 @@
 				15D927141B80E4D100AF3437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

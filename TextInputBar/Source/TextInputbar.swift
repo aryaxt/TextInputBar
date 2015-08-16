@@ -33,15 +33,15 @@ import UIKit
 
 @IBDesignable public class TextInputbar: UIToolbar {
 	
-	public var textView: PlaceholderTextView!
-	public var sendButton: UIButton!
-	public var activityIndicatorView: UIActivityIndicatorView!
+	@IBOutlet public weak var scrollView: UIScrollView?
+	public let textView = PlaceholderTextView()
+	public let sendButton = UIButton()
+	public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
 	private var textViewBarButtonItem: UIBarButtonItem!
 	private var sendButtonBarButtonItem: UIBarButtonItem!
 	private var activityIndicatorBarButtonItem: UIBarButtonItem!
-	private var keyboardHeight: CGFloat = 0
+	private var keyboardVisibleHeight: CGFloat = 0
 	private var delegateInterceptor: TextInputBarDelegate?
-	@IBOutlet public weak var scrollView: UIScrollView?
 	
 	override public var delegate: UIToolbarDelegate? {
 		didSet {
@@ -56,6 +56,13 @@ import UIKit
 	}
 	
 	@IBInspectable public var textViewPadding: CGFloat = 5 {
+		didSet {
+			setNeedsLayout()
+			layoutIfNeeded()
+		}
+	}
+	
+	@IBInspectable public var maxTextHeight: CGFloat = 100 {
 		didSet {
 			setNeedsLayout()
 			layoutIfNeeded()
@@ -83,15 +90,17 @@ import UIKit
 		let activityIndicatorWidth: CGFloat = items!.contains(activityIndicatorBarButtonItem) ? sendButton.frame.size.width : 0
 		// WTF don't hardcode 35, use constraintWithAttribute instead
 		let textViewWidth: CGFloat = frame.size.width - (sendButtonWith + activityIndicatorWidth) - 35
-		let textViewHeight: CGFloat = textView.sizeThatFits(CGSizeMake(textViewWidth, CGFloat.max)).height
+		var textViewHeight: CGFloat = textView.sizeThatFits(CGSizeMake(textViewWidth, CGFloat.max)).height
+		textView.scrollEnabled = textViewHeight > maxTextHeight ? true : false
+		textViewHeight = textViewHeight > maxTextHeight ? maxTextHeight : textViewHeight
 		textView.frame = CGRectMake(textViewPadding, textViewPadding, textViewWidth, textViewHeight)
 		
 		constraintWithAttribute(.Height)?.constant = textView.frame.size.height + textViewPadding * 2
-		superview?.constraintWithAttribute(.Bottom)?.constant = keyboardHeight * -1
+		superview?.constraintWithAttribute(.Bottom)?.constant = keyboardVisibleHeight * -1
 		
 		if let scrollView = scrollView {
 			var newInset = scrollView.contentInset
-			newInset.bottom = textViewHeight + keyboardHeight;
+			newInset.bottom = textViewHeight + keyboardVisibleHeight;
 			scrollView.contentInset = newInset
 		}
 		
@@ -100,26 +109,29 @@ import UIKit
 	
 	private func customInitialization() {
 		
-		sendButton = UIButton(type: .Custom)
 		sendButton .setTitle("Send", forState: .Normal)
 		sendButton.setTitleColor(.blackColor(), forState: .Normal)
 		sendButton.addTarget(self, action: "sendButtonSelected:", forControlEvents: .TouchUpInside)
 		sendButton.titleLabel?.font = UIFont.systemFontOfSize(15)
 		sendButtonBarButtonItem = UIBarButtonItem(customView: sendButton)
 		
-		textView = PlaceholderTextView()
 		textView.placeholderText = "Type a message..."
 		textView.layer.borderWidth = 0.6
 		textView.layer.borderColor = UIColor.lightGrayColor().CGColor
 		textView.layer.cornerRadius = 3
 		textViewBarButtonItem = UIBarButtonItem(customView: textView)
 		
-		activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
 		activityIndicatorView.color = .blackColor()
 		activityIndicatorView.startAnimating()
 		activityIndicatorBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
 		
 		setItems([textViewBarButtonItem], animated: false)
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: "keyboardWillChangeFrameNotificationRecieved:",
+			name: UIKeyboardWillChangeFrameNotification,
+			object: nil)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
@@ -186,8 +198,8 @@ import UIKit
 				
 				let animationCurveRaw = animationCurveRawNSN.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
 				let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-				
-				keyboardHeight = endFrame.size.height + endFrame.origin.y > window.frame.size.height ? 0 : endFrame.size.height
+				let offset: CGFloat = endFrame.origin.y + endFrame.size.height - window.frame.size.height
+				keyboardVisibleHeight = endFrame.size.height - offset;
 				
 				UIView.animateWithDuration(duration, delay: 0, options: animationCurve, animations: { [weak self] in
 					
