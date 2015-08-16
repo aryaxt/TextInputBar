@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSource {
 	
+	@IBOutlet private var inputbar: TextInputbar!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -29,6 +31,13 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 	
 	func textInputBar(didSelectSend textInputbar: TextInputbar) {
 		textInputbar.showProgress(true, animated: true)
+		
+		let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
+		
+		dispatch_after(delayTime, dispatch_get_main_queue()) {
+			textInputbar.textView.text = ""
+			textInputbar.showProgress(false, animated: true)
+		}
 	}
 	
 	// MARK: - UITableViewDataSource -
