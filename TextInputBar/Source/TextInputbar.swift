@@ -100,8 +100,9 @@ import UIKit
 		
 		if let scrollView = scrollView {
 			var newInset = scrollView.contentInset
-			newInset.bottom = textViewHeight + keyboardVisibleHeight;
+			newInset.bottom = textViewHeight + (2 * textViewPadding) + keyboardVisibleHeight;
 			scrollView.contentInset = newInset
+			scrollView.scrollIndicatorInsets = newInset
 		}
 		
 		super.layoutSubviews()
