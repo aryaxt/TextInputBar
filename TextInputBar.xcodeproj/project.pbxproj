@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15D926E81B80E4D100AF3437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D926E71B80E4D100AF3437 /* AppDelegate.swift */; };
+		15D926EA1B80E4D100AF3437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D926E91B80E4D100AF3437 /* ViewController.swift */; };
+		15D926ED1B80E4D100AF3437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D926EB1B80E4D100AF3437 /* Main.storyboard */; };
+		15D926EF1B80E4D100AF3437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15D926EE1B80E4D100AF3437 /* Assets.xcassets */; };
+		15D926F21B80E4D100AF3437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D926F01B80E4D100AF3437 /* LaunchScreen.storyboard */; };
+		15D926FD1B80E4D100AF3437 /* TextInputBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D926FC1B80E4D100AF3437 /* TextInputBarTests.swift */; };
+		15D927081B80E4D100AF3437 /* TextInputBarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927071B80E4D100AF3437 /* TextInputBarUITests.swift */; };
+		15D927191B80E4E300AF3437 /* TextInputbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927161B80E4E300AF3437 /* TextInputbar.swift */; };
+		15D9271A1B80E4E300AF3437 /* TextInputbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927161B80E4E300AF3437 /* TextInputbar.swift */; };
+		15D9271B1B80E4E300AF3437 /* TextInputbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927161B80E4E300AF3437 /* TextInputbar.swift */; };
+		15D9271C1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927171B80E4E300AF3437 /* TextInputExtensions.swift */; };
+		15D9271D1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927171B80E4E300AF3437 /* TextInputExtensions.swift */; };
+		15D9271E1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927171B80E4E300AF3437 /* TextInputExtensions.swift */; };
+		15D9271F1B80E4E300AF3437 /* TextInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927181B80E4E300AF3437 /* TextInputTextView.swift */; };
+		15D927201B80E4E300AF3437 /* TextInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927181B80E4E300AF3437 /* TextInputTextView.swift */; };
+		15D927211B80E4E300AF3437 /* TextInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D927181B80E4E300AF3437 /* TextInputTextView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15D926F91B80E4D100AF3437 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D926DC1B80E4D100AF3437 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15D926E31B80E4D100AF3437;
+			remoteInfo = TextInputBar;
+		};
+		15D927041B80E4D100AF3437 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D926DC1B80E4D100AF3437 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15D926E31B80E4D100AF3437;
+			remoteInfo = TextInputBar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15D926E41B80E4D100AF3437 /* TextInputBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextInputBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D926E71B80E4D100AF3437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		15D926E91B80E4D100AF3437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		15D926EC1B80E4D100AF3437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		15D926EE1B80E4D100AF3437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15D926F11B80E4D100AF3437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		15D926F31B80E4D100AF3437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15D926F81B80E4D100AF3437 /* TextInputBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextInputBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D926FC1B80E4D100AF3437 /* TextInputBarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputBarTests.swift; sourceTree = "<group>"; };
+		15D926FE1B80E4D100AF3437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15D927031B80E4D100AF3437 /* TextInputBarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextInputBarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D927071B80E4D100AF3437 /* TextInputBarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputBarUITests.swift; sourceTree = "<group>"; };
+		15D927091B80E4D100AF3437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15D927161B80E4E300AF3437 /* TextInputbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputbar.swift; sourceTree = "<group>"; };
+		15D927171B80E4E300AF3437 /* TextInputExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputExtensions.swift; sourceTree = "<group>"; };
+		15D927181B80E4E300AF3437 /* TextInputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTextView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15D926E11B80E4D100AF3437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D926F51B80E4D100AF3437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D927001B80E4D100AF3437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15D926DB1B80E4D100AF3437 = {
+			isa = PBXGroup;
+			children = (
+				15D926E61B80E4D100AF3437 /* TextInputBar */,
+				15D926FB1B80E4D100AF3437 /* TextInputBarTests */,
+				15D927061B80E4D100AF3437 /* TextInputBarUITests */,
+				15D926E51B80E4D100AF3437 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15D926E51B80E4D100AF3437 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15D926E41B80E4D100AF3437 /* TextInputBar.app */,
+				15D926F81B80E4D100AF3437 /* TextInputBarTests.xctest */,
+				15D927031B80E4D100AF3437 /* TextInputBarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15D926E61B80E4D100AF3437 /* TextInputBar */ = {
+			isa = PBXGroup;
+			children = (
+				15D927151B80E4E300AF3437 /* Source */,
+				15D926E71B80E4D100AF3437 /* AppDelegate.swift */,
+				15D926E91B80E4D100AF3437 /* ViewController.swift */,
+				15D926EB1B80E4D100AF3437 /* Main.storyboard */,
+				15D926EE1B80E4D100AF3437 /* Assets.xcassets */,
+				15D926F01B80E4D100AF3437 /* LaunchScreen.storyboard */,
+				15D926F31B80E4D100AF3437 /* Info.plist */,
+			);
+			path = TextInputBar;
+			sourceTree = "<group>";
+		};
+		15D926FB1B80E4D100AF3437 /* TextInputBarTests */ = {
+			isa = PBXGroup;
+			children = (
+				15D926FC1B80E4D100AF3437 /* TextInputBarTests.swift */,
+				15D926FE1B80E4D100AF3437 /* Info.plist */,
+			);
+			path = TextInputBarTests;
+			sourceTree = "<group>";
+		};
+		15D927061B80E4D100AF3437 /* TextInputBarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15D927071B80E4D100AF3437 /* TextInputBarUITests.swift */,
+				15D927091B80E4D100AF3437 /* Info.plist */,
+			);
+			path = TextInputBarUITests;
+			sourceTree = "<group>";
+		};
+		15D927151B80E4E300AF3437 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				15D927161B80E4E300AF3437 /* TextInputbar.swift */,
+				15D927181B80E4E300AF3437 /* TextInputTextView.swift */,
+				15D927171B80E4E300AF3437 /* TextInputExtensions.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15D926E31B80E4D100AF3437 /* TextInputBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15D9270C1B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBar" */;
+			buildPhases = (
+				15D926E01B80E4D100AF3437 /* Sources */,
+				15D926E11B80E4D100AF3437 /* Frameworks */,
+				15D926E21B80E4D100AF3437 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextInputBar;
+			productName = TextInputBar;
+			productReference = 15D926E41B80E4D100AF3437 /* TextInputBar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15D926F71B80E4D100AF3437 /* TextInputBarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15D9270F1B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBarTests" */;
+			buildPhases = (
+				15D926F41B80E4D100AF3437 /* Sources */,
+				15D926F51B80E4D100AF3437 /* Frameworks */,
+				15D926F61B80E4D100AF3437 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15D926FA1B80E4D100AF3437 /* PBXTargetDependency */,
+			);
+			name = TextInputBarTests;
+			productName = TextInputBarTests;
+			productReference = 15D926F81B80E4D100AF3437 /* TextInputBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15D927021B80E4D100AF3437 /* TextInputBarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15D927121B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBarUITests" */;
+			buildPhases = (
+				15D926FF1B80E4D100AF3437 /* Sources */,
+				15D927001B80E4D100AF3437 /* Frameworks */,
+				15D927011B80E4D100AF3437 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15D927051B80E4D100AF3437 /* PBXTargetDependency */,
+			);
+			name = TextInputBarUITests;
+			productName = TextInputBarUITests;
+			productReference = 15D927031B80E4D100AF3437 /* TextInputBarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15D926DC1B80E4D100AF3437 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Aryan Ghassemi";
+				TargetAttributes = {
+					15D926E31B80E4D100AF3437 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					15D926F71B80E4D100AF3437 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 15D926E31B80E4D100AF3437;
+					};
+					15D927021B80E4D100AF3437 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 15D926E31B80E4D100AF3437;
+					};
+				};
+			};
+			buildConfigurationList = 15D926DF1B80E4D100AF3437 /* Build configuration list for PBXProject "TextInputBar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15D926DB1B80E4D100AF3437;
+			productRefGroup = 15D926E51B80E4D100AF3437 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15D926E31B80E4D100AF3437 /* TextInputBar */,
+				15D926F71B80E4D100AF3437 /* TextInputBarTests */,
+				15D927021B80E4D100AF3437 /* TextInputBarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15D926E21B80E4D100AF3437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D926F21B80E4D100AF3437 /* LaunchScreen.storyboard in Resources */,
+				15D926EF1B80E4D100AF3437 /* Assets.xcassets in Resources */,
+				15D926ED1B80E4D100AF3437 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D926F61B80E4D100AF3437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D927011B80E4D100AF3437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15D926E01B80E4D100AF3437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D9271F1B80E4E300AF3437 /* TextInputTextView.swift in Sources */,
+				15D927191B80E4E300AF3437 /* TextInputbar.swift in Sources */,
+				15D9271C1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
+				15D926EA1B80E4D100AF3437 /* ViewController.swift in Sources */,
+				15D926E81B80E4D100AF3437 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D926F41B80E4D100AF3437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D926FD1B80E4D100AF3437 /* TextInputBarTests.swift in Sources */,
+				15D9271A1B80E4E300AF3437 /* TextInputbar.swift in Sources */,
+				15D9271D1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
+				15D927201B80E4E300AF3437 /* TextInputTextView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D926FF1B80E4D100AF3437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D927081B80E4D100AF3437 /* TextInputBarUITests.swift in Sources */,
+				15D9271B1B80E4E300AF3437 /* TextInputbar.swift in Sources */,
+				15D9271E1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
+				15D927211B80E4E300AF3437 /* TextInputTextView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15D926FA1B80E4D100AF3437 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15D926E31B80E4D100AF3437 /* TextInputBar */;
+			targetProxy = 15D926F91B80E4D100AF3437 /* PBXContainerItemProxy */;
+		};
+		15D927051B80E4D100AF3437 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15D926E31B80E4D100AF3437 /* TextInputBar */;
+			targetProxy = 15D927041B80E4D100AF3437 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		15D926EB1B80E4D100AF3437 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15D926EC1B80E4D100AF3437 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		15D926F01B80E4D100AF3437 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15D926F11B80E4D100AF3437 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		15D9270A1B80E4D100AF3437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15D9270B1B80E4D100AF3437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15D9270D1B80E4D100AF3437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TextInputBar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaxt.TextInputBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		15D9270E1B80E4D100AF3437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TextInputBar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaxt.TextInputBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		15D927101B80E4D100AF3437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TextInputBarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaxt.TextInputBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextInputBar.app/TextInputBar";
+			};
+			name = Debug;
+		};
+		15D927111B80E4D100AF3437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TextInputBarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaxt.TextInputBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextInputBar.app/TextInputBar";
+			};
+			name = Release;
+		};
+		15D927131B80E4D100AF3437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TextInputBarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaxt.TextInputBarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TextInputBar;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		15D927141B80E4D100AF3437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TextInputBarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaxt.TextInputBarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TextInputBar;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15D926DF1B80E4D100AF3437 /* Build configuration list for PBXProject "TextInputBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D9270A1B80E4D100AF3437 /* Debug */,
+				15D9270B1B80E4D100AF3437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15D9270C1B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D9270D1B80E4D100AF3437 /* Debug */,
+				15D9270E1B80E4D100AF3437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		15D9270F1B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D927101B80E4D100AF3437 /* Debug */,
+				15D927111B80E4D100AF3437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		15D927121B80E4D100AF3437 /* Build configuration list for PBXNativeTarget "TextInputBarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D927131B80E4D100AF3437 /* Debug */,
+				15D927141B80E4D100AF3437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15D926DC1B80E4D100AF3437 /* Project object */;
+}
