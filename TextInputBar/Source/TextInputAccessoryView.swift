@@ -34,7 +34,6 @@ import UIKit
 class TextInputAccessoryView: UIView {
 	
 	weak var delegate: TextInputAccessoryViewDelegate!
-	private var superViewFrame: CGRect?
 	private var isObserving = false
 	private let keyPathsToObserve = ["frame", "center"]
 	private let myContext = UnsafeMutablePointer<()>()
