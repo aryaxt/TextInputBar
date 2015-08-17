@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15A187151B817F5B00284398 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A187141B817F5B00284398 /* TextInputAccessoryView.swift */; };
+		15A187161B817F5B00284398 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A187141B817F5B00284398 /* TextInputAccessoryView.swift */; };
+		15A187171B817F5B00284398 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A187141B817F5B00284398 /* TextInputAccessoryView.swift */; };
 		15D926E81B80E4D100AF3437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D926E71B80E4D100AF3437 /* AppDelegate.swift */; };
 		15D926EA1B80E4D100AF3437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D926E91B80E4D100AF3437 /* ViewController.swift */; };
 		15D926ED1B80E4D100AF3437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D926EB1B80E4D100AF3437 /* Main.storyboard */; };
@@ -43,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15A187141B817F5B00284398 /* TextInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputAccessoryView.swift; sourceTree = "<group>"; };
 		15D926E41B80E4D100AF3437 /* TextInputBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextInputBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D926E71B80E4D100AF3437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15D926E91B80E4D100AF3437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			children = (
 				15D927161B80E4E300AF3437 /* TextInputbar.swift */,
 				15D927181B80E4E300AF3437 /* TextInputTextView.swift */,
+				15A187141B817F5B00284398 /* TextInputAccessoryView.swift */,
 				15D927171B80E4E300AF3437 /* TextInputExtensions.swift */,
 			);
 			path = Source;
@@ -279,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15D9271F1B80E4E300AF3437 /* TextInputTextView.swift in Sources */,
+				15A187151B817F5B00284398 /* TextInputAccessoryView.swift in Sources */,
 				15D927191B80E4E300AF3437 /* TextInputbar.swift in Sources */,
 				15D9271C1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
 				15D926EA1B80E4D100AF3437 /* ViewController.swift in Sources */,
@@ -290,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A187161B817F5B00284398 /* TextInputAccessoryView.swift in Sources */,
 				15D926FD1B80E4D100AF3437 /* TextInputBarTests.swift in Sources */,
 				15D9271A1B80E4E300AF3437 /* TextInputbar.swift in Sources */,
 				15D9271D1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
@@ -301,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A187171B817F5B00284398 /* TextInputAccessoryView.swift in Sources */,
 				15D927081B80E4D100AF3437 /* TextInputBarUITests.swift in Sources */,
 				15D9271B1B80E4E300AF3437 /* TextInputbar.swift in Sources */,
 				15D9271E1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,

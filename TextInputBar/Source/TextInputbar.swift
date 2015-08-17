@@ -31,7 +31,7 @@ import UIKit
 	func textInputBar(didSelectSend textInputbar: TextInputbar)
 }
 
-@IBDesignable public class TextInputbar: UIToolbar, TextInputTextViewDelegate {
+@IBDesignable public class TextInputbar: UIToolbar, TextInputTextViewDelegate, TextInputAccessoryViewDelegate {
 	
 	@IBOutlet public weak var scrollView: UIScrollView?
 	public let textView = TextInputTextView()
@@ -43,6 +43,7 @@ import UIKit
 	private var activityIndicatorBarButtonItem: UIBarButtonItem!
 	private var keyboardVisibleHeight: CGFloat = 0
 	private var delegateInterceptor: TextInputBarDelegate?
+	private let accessoryView = TextInputAccessoryView()
 	
 	override public var delegate: UIToolbarDelegate? {
 		didSet {
@@ -104,6 +105,8 @@ import UIKit
 	
 	private func customInitialization() {
 		
+		accessoryView.delegate = self
+		
 		sendButton .setTitle("Send", forState: .Normal)
 		sendButton.setTitleColor(.blackColor(), forState: .Normal)
 		sendButton.addTarget(self, action: "sendButtonSelected:", forControlEvents: .TouchUpInside)
@@ -115,6 +118,7 @@ import UIKit
 		textView.layer.borderColor = UIColor.lightGrayColor().CGColor
 		textView.layer.cornerRadius = 3
 		textView.delegate = self
+		textView.inputAccessoryView = accessoryView
 		textViewBarButtonItem = UIBarButtonItem(customView: textView)
 		
 		activityIndicatorView.color = .blackColor()
@@ -169,6 +173,17 @@ import UIKit
 		UIView.animateWithDuration(0.15) { [weak self] in
 			self?.setNeedsLayout()
 			self?.layoutIfNeeded()
+		}
+	}
+	
+	// MARK: - TextInputAccessoryViewDelegate -
+	
+	public func textInputAccessoryView(didChnageToFrame rect: CGRect) {
+		
+		if let window = superview?.window {
+			keyboardVisibleHeight = window.frame.size.height - (rect.origin.y)
+			setNeedsLayout()
+			layoutIfNeeded()
 		}
 	}
 	
