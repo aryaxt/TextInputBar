@@ -1,6 +1,8 @@
 # TextInputBar
 A text input bar that is keyboard aware, and resizes its content based on the amount of text
 
+![alt tag](https://raw.githubusercontent.com/aryaxt/TextInputBar/master/textInputBar.png)
+
 Features:
 - Text view automatically resizes based on content
 - Allows setting max size for text view height
