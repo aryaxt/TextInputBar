@@ -147,8 +147,6 @@ import UIKit
 			? [textViewBarButtonItem, activityIndicatorBarButtonItem]
 			: textView.text.isEmpty ? [textViewBarButtonItem, sendButtonBarButtonItem] : [textViewBarButtonItem, sendButtonBarButtonItem]
 		
-		textView.editable = !progress
-		
 		setItems(items, animated: animated)
 	}
 	
@@ -188,6 +186,10 @@ import UIKit
 	
 	public func textInputTextView(didSetText textInputTextView: TextInputTextView) {
 		updateStateBasedOnTextChange()
+	}
+	
+	public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+		return !items!.contains(activityIndicatorBarButtonItem)
 	}
 	
 	// MARK: - NSNotification -
