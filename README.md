@@ -11,6 +11,7 @@ Features:
 
 Instruction
 - Drag and drop a UIToolbar to IB (or init in code)
+- Change its class to TextInputBar
 - Pin toolbar to bottom layout guide
 - Set the delegate to the viewController (Can be done both in code or IB)
 - Set the scrollView outlet if you have one (Can be done both in code or IB)
