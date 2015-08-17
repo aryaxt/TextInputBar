@@ -5,20 +5,39 @@
 //  Created by Aryan Ghassemi on 8/16/15.
 //  Copyright © 2015 Aryan Ghassemi. All rights reserved.
 //
+//	https://github.com/aryaxt/TextInputBar
+//
+//	Permission is hereby granted, free of charge, to any person obtaining a copy
+//	of this software and associated documentation files (the "Software"), to deal
+//	in the Software without restriction, including without limitation the rights
+//	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//	copies of the Software, and to permit persons to whom the Software is
+//	furnished to do so, subject to the following conditions:
+//
+//	The above copyright notice and this permission notice shall be included in
+//	all copies or substantial portions of the Software.
+//
+//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//	THE SOFTWARE.
 
 import UIKit
 
-@objc public protocol TextInputAccessoryViewDelegate {
+@objc protocol TextInputAccessoryViewDelegate {
 	func textInputAccessoryView(didChnageToFrame rect: CGRect)
 }
 
-public class TextInputAccessoryView: UIView {
+class TextInputAccessoryView: UIView {
 	
-	public weak var delegate: TextInputAccessoryViewDelegate!
+	weak var delegate: TextInputAccessoryViewDelegate!
 	private var superViewFrame: CGRect?
 	private var isObserving = false
 	private let keyPathsToObserve = ["frame", "center"]
-	let myContext = UnsafeMutablePointer<()>()
+	private let myContext = UnsafeMutablePointer<()>()
 	
 	// MARK: - Initialization -
 	
@@ -27,7 +46,7 @@ public class TextInputAccessoryView: UIView {
 		userInteractionEnabled = false
 	}
 
-	required public init?(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
@@ -35,7 +54,9 @@ public class TextInputAccessoryView: UIView {
 		removeObserversIfNeeded()
 	}
 	
-	public override func layoutSubviews() {
+	// MARK: - UIView Methods -
+	
+	override func layoutSubviews() {
 		super.layoutSubviews()
 		
 		if let superview = superview {
@@ -43,7 +64,7 @@ public class TextInputAccessoryView: UIView {
 		}
 	}
 	
-	public override func willMoveToSuperview(newSuperview: UIView?) {
+	override func willMoveToSuperview(newSuperview: UIView?) {
 		removeObserversIfNeeded()
 		
 		for path in keyPathsToObserve {
@@ -57,7 +78,7 @@ public class TextInputAccessoryView: UIView {
 	
 	// MARK: - Private -
 	
-	private func removeObserversIfNeeded() {
+	func removeObserversIfNeeded() {
 		if isObserving {
 			for path in keyPathsToObserve {
 				superview?.removeObserver(self, forKeyPath:path)
@@ -67,11 +88,12 @@ public class TextInputAccessoryView: UIView {
 	
 	// MARK: - KBO -
 	
-	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
 		
 		if  let keyPath = keyPath,
 			let superview = superview
 			where object === superview && keyPathsToObserve.contains(keyPath) {
+				
 			delegate.textInputAccessoryView(didChnageToFrame: superview.frame)
 		}
 	}
