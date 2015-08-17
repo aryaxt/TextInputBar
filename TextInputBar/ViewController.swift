@@ -29,11 +29,6 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 		// Dispose of any resources that can be recreated.
 	}
 	
-	
-	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-		view.endEditing(true)
-	}
-	
 	// MARK: - TextInputToolbarDelegate -
 	
 	func textInputBar(didSelectSend textInputbar: TextInputbar) {
