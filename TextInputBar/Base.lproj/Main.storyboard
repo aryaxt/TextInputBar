@@ -57,6 +57,7 @@
                     </view>
                     <connections>
                         <outlet property="inputbar" destination="zed-Dc-KUn" id="9Rg-kh-7z5"/>
+                        <outlet property="tableView" destination="Qg9-A2-ZM7" id="zUf-Av-hM1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
