@@ -15,6 +15,8 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+		inputbar.textView.text = "This is a test\nThis is a test\nThis is a test"
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -35,15 +37,15 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 		let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
 		
 		dispatch_after(delayTime, dispatch_get_main_queue()) {
-			textInputbar.textView.text = ""
 			textInputbar.showProgress(false, animated: true)
+			textInputbar.textView.text = ""
 		}
 	}
 	
 	// MARK: - UITableViewDataSource -
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 100
+		return 25
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

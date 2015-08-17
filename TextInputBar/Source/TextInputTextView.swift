@@ -27,9 +27,33 @@
 
 import UIKit
 
-@IBDesignable public class PlaceholderTextView: UITextView {
+@objc public protocol TextInputTextViewDelegate: NSObjectProtocol, UITextViewDelegate {
+	func textInputTextView(didSetText textInputTextView: TextInputTextView)
+}
+
+@IBDesignable public class TextInputTextView: UITextView {
 	
 	private var placeholderTextView: UITextView!
+	private var delegateInterceptor: TextInputTextViewDelegate?
+	
+	override public var delegate: UITextViewDelegate? {
+		didSet {
+			if let delegate = delegate {
+				let castedDelegate = unsafeBitCast(delegate, TextInputTextViewDelegate.self)
+				delegateInterceptor = castedDelegate
+			}
+			else {
+				delegateInterceptor = nil
+			}
+		}
+	}
+	
+	override public var text: String! {
+		didSet {
+			delegateInterceptor?.textInputTextView(didSetText: self)
+		}
+	}
+	
 	@IBInspectable public var placeholderText: String? {
 		didSet {
 			placeholderTextView.text = placeholderText

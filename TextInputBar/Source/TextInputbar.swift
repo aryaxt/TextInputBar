@@ -31,12 +31,13 @@ import UIKit
 	func textInputBar(didSelectSend textInputbar: TextInputbar)
 }
 
-@IBDesignable public class TextInputbar: UIToolbar {
+@IBDesignable public class TextInputbar: UIToolbar, TextInputTextViewDelegate {
 	
 	@IBOutlet public weak var scrollView: UIScrollView?
-	public let textView = PlaceholderTextView()
+	public let textView = TextInputTextView()
 	public let sendButton = UIButton()
 	public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
+	private let textViewPadding: CGFloat = 5
 	private var textViewBarButtonItem: UIBarButtonItem!
 	private var sendButtonBarButtonItem: UIBarButtonItem!
 	private var activityIndicatorBarButtonItem: UIBarButtonItem!
@@ -52,13 +53,6 @@ import UIKit
 			else {
 				delegateInterceptor = nil
 			}
-		}
-	}
-	
-	@IBInspectable public var textViewPadding: CGFloat = 5 {
-		didSet {
-			setNeedsLayout()
-			layoutIfNeeded()
 		}
 	}
 	
@@ -100,7 +94,7 @@ import UIKit
 		
 		if let scrollView = scrollView {
 			var newInset = scrollView.contentInset
-			newInset.bottom = textViewHeight + (2 * textViewPadding) + keyboardVisibleHeight
+			newInset.bottom = textViewHeight + (2 * textViewPadding)
 			scrollView.contentInset = newInset
 			scrollView.scrollIndicatorInsets = newInset
 		}
@@ -120,6 +114,7 @@ import UIKit
 		textView.layer.borderWidth = 0.6
 		textView.layer.borderColor = UIColor.lightGrayColor().CGColor
 		textView.layer.cornerRadius = 3
+		textView.delegate = self
 		textViewBarButtonItem = UIBarButtonItem(customView: textView)
 		
 		activityIndicatorView.color = .blackColor()
@@ -139,12 +134,6 @@ import UIKit
 			selector: "keyboardWillChangeFrameNotificationRecieved:",
 			name: UIKeyboardWillChangeFrameNotification,
 			object: nil)
-		
-		NSNotificationCenter.defaultCenter().addObserver(
-			self,
-			selector: "textDidChangeNotification:",
-			name: UITextViewTextDidChangeNotification,
-			object: textView)
 	}
 	
 	deinit {
@@ -156,20 +145,16 @@ import UIKit
 	public func showProgress(progress: Bool, animated: Bool) {
 		let items: [UIBarButtonItem] = progress
 			? [textViewBarButtonItem, activityIndicatorBarButtonItem]
-			: [textViewBarButtonItem, sendButtonBarButtonItem]
+			: textView.text.isEmpty ? [textViewBarButtonItem, sendButtonBarButtonItem] : [textViewBarButtonItem, sendButtonBarButtonItem]
+		
+		textView.editable = !progress
 		
 		setItems(items, animated: animated)
 	}
 	
-	// MARK: - Actions -
+	// MARK: - Private -
 	
-	func sendButtonSelected(sender: UIButton) {
-		delegateInterceptor?.textInputBar(didSelectSend: self)
-	}
-	
-	// MARK: - NSNotification -
-	
-	func textDidChangeNotification(note: NSNotification) {
+	private func updateStateBasedOnTextChange() {
 		let newItems: [UIBarButtonItem]
 		
 		if textView.text.isEmpty {
@@ -188,6 +173,24 @@ import UIKit
 			self?.layoutIfNeeded()
 		}
 	}
+	
+	// MARK: - Actions -
+	
+	func sendButtonSelected(sender: UIButton) {
+		delegateInterceptor?.textInputBar(didSelectSend: self)
+	}
+	
+	// MARK: - TextInputTextViewDelegate -
+	
+	public func textViewDidChange(textView: UITextView) {
+		updateStateBasedOnTextChange()
+	}
+	
+	public func textInputTextView(didSetText textInputTextView: TextInputTextView) {
+		updateStateBasedOnTextChange()
+	}
+	
+	// MARK: - NSNotification -
 	
 	func keyboardWillChangeFrameNotificationRecieved(note: NSNotification) {
 		
