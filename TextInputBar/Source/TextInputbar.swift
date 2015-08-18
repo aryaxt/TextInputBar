@@ -88,14 +88,31 @@ import UIKit
 		var textViewHeight: CGFloat = textView.sizeThatFits(CGSizeMake(textViewWidth, CGFloat.max)).height
 		textView.scrollEnabled = textViewHeight > maxTextHeight ? true : false
 		textViewHeight = textViewHeight > maxTextHeight ? maxTextHeight : textViewHeight
-		textView.frame = CGRectMake(textViewPadding, textViewPadding, textViewWidth, textViewHeight)
+		
+        let newTextViewRect = CGRectMake(textViewPadding, textViewPadding, textViewWidth, textViewHeight)
+        
+        if !CGRectEqualToRect(textView.frame, newTextViewRect) {
+            textView.frame = newTextViewRect
+        }
 		
 		constraintWithAttribute(.Height)?.constant = textView.frame.size.height + textViewPadding * 2
-		superview?.constraintWithAttribute(.Bottom)?.constant = keyboardVisibleHeight * -1
+        
+        if let bottomGuideConstraint = superview?.constraintWithAttribute(.Bottom, includesView: self) {
+            let constant = bottomGuideConstraint.firstItem === self ? keyboardVisibleHeight * -1 : keyboardVisibleHeight
+            bottomGuideConstraint.constant = constant
+        }
 		
 		if let scrollView = scrollView {
 			var newInset = scrollView.contentInset
-			newInset.bottom = textViewHeight + (2 * textViewPadding)
+            
+            // iOS9 automatically adjusts insets of scrollview
+            if UIDevice.currentDevice().systemVersionGreaterOrEqualTo("9") {
+                newInset.bottom = textViewHeight + (2 * textViewPadding)
+            }
+            else {
+                newInset.bottom = textViewHeight + (2 * textViewPadding) + keyboardVisibleHeight
+            }
+            
 			scrollView.contentInset = newInset
 			scrollView.scrollIndicatorInsets = newInset
 		}

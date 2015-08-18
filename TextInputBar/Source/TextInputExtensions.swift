@@ -29,14 +29,36 @@ import UIKit
 
 extension UIView {
 	
-	func constraintWithAttribute(attribute: NSLayoutAttribute) -> NSLayoutConstraint? {
-		for constraint in constraints where constraint.firstAttribute == attribute || constraint.secondAttribute == attribute  {
-			if constraint.firstAttribute == attribute || constraint.secondAttribute == attribute {
-				
-				return constraint
-			}
-		}
-		
-		return nil
-	}
+    func constraintWithAttribute(attribute: NSLayoutAttribute, includesView: UIView? = nil) -> NSLayoutConstraint? {
+        for constraint in constraints  {
+            if constraint.firstAttribute == attribute || constraint.secondAttribute == attribute {
+                
+                if let includesView = includesView {
+                    if constraint.firstItem === includesView || constraint.secondItem === includesView {
+                        return constraint
+                    }
+                }
+                else {
+                    return constraint
+                }
+            }
+        }
+        
+        return nil
+    }
 }
+
+extension UIDevice {
+    
+    func systemVersionGreaterOrEqualTo(version: String) -> Bool {
+        return UIDevice.currentDevice().systemVersion.compare(version,
+            options: NSStringCompareOptions.NumericSearch) != NSComparisonResult.OrderedAscending
+    }
+    
+    func systemVersionLessThan(version: String) -> Bool {
+        return UIDevice.currentDevice().systemVersion.compare(version,
+            options: NSStringCompareOptions.NumericSearch) == NSComparisonResult.OrderedAscending
+    }
+    
+}
+
