@@ -81,19 +81,8 @@ import UIKit
 		
 		activityIndicatorBarButtonItem.width = sendButtonBarButtonItem.width
 		
-		let sendButtonWith: CGFloat = items!.contains(sendButtonBarButtonItem) ? sendButton.frame.size.width : 0
-		let activityIndicatorWidth: CGFloat = items!.contains(activityIndicatorBarButtonItem) ? sendButton.frame.size.width : 0
-		// WTF don't hardcode 35, use constraintWithAttribute instead
-		let textViewWidth: CGFloat = frame.size.width - (sendButtonWith + activityIndicatorWidth) - 35
-		var textViewHeight: CGFloat = textView.sizeThatFits(CGSizeMake(textViewWidth, CGFloat.max)).height
-		textView.scrollEnabled = textViewHeight > maxTextHeight ? true : false
-		textViewHeight = textViewHeight > maxTextHeight ? maxTextHeight : textViewHeight
-		
-        let newTextViewRect = CGRectMake(textViewPadding, textViewPadding, textViewWidth, textViewHeight)
-        
-        if !CGRectEqualToRect(textView.frame, newTextViewRect) {
-            textView.frame = newTextViewRect
-        }
+        let appropriateTextViewSize = appropriateSizeForTextView()
+        textView.frame = CGRectMake(0, 0, appropriateTextViewSize.width, appropriateTextViewSize.height)
 		
 		constraintWithAttribute(.Height)?.constant = textView.frame.size.height + textViewPadding * 2
         
@@ -107,10 +96,10 @@ import UIKit
             
             // iOS9 automatically adjusts insets of scrollview
             if UIDevice.currentDevice().systemVersionGreaterOrEqualTo("9") {
-                newInset.bottom = textViewHeight + (2 * textViewPadding)
+                newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding)
             }
             else {
-                newInset.bottom = textViewHeight + (2 * textViewPadding) + keyboardVisibleHeight
+                newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding) + keyboardVisibleHeight
             }
             
 			scrollView.contentInset = newInset
@@ -172,6 +161,17 @@ import UIKit
 	}
 	
 	// MARK: - Private -
+    
+    private func appropriateSizeForTextView() -> CGSize {
+        // WTF don't hardcode 35, use constraintWithAttribute instead
+        let sendButtonWith: CGFloat = items!.contains(sendButtonBarButtonItem) ? sendButton.frame.size.width : 0
+        let activityIndicatorWidth: CGFloat = items!.contains(activityIndicatorBarButtonItem) ? sendButton.frame.size.width : 0
+        let textViewWidth: CGFloat = frame.size.width - (sendButtonWith + activityIndicatorWidth) - 35
+        var textViewHeight: CGFloat = textView.sizeThatFits(CGSizeMake(textViewWidth, CGFloat.max)).height
+        textViewHeight = textViewHeight > maxTextHeight ? maxTextHeight : textViewHeight
+        
+        return CGSizeMake(textViewWidth, textViewHeight)
+    }
 	
 	private func updateStateBasedOnTextChange() {
 		let newItems: [UIBarButtonItem]
@@ -186,11 +186,13 @@ import UIKit
 		if newItems.count != items?.count {
 			setItems(newItems, animated: true)
 		}
-		
-		UIView.animateWithDuration(0.15) { [weak self] in
-			self?.setNeedsLayout()
-			self?.layoutIfNeeded()
-		}
+
+        if !CGSizeEqualToSize(textView.frame.size, appropriateSizeForTextView()) {
+            UIView.animateWithDuration(0.15) { [weak self] in
+                self?.setNeedsLayout()
+                self?.layoutIfNeeded()
+            }
+        }
 	}
 	
 	// MARK: - TextInputAccessoryViewDelegate -
