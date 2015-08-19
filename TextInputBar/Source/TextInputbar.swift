@@ -116,7 +116,7 @@ import UIKit
 		sendButton .setTitle("Send", forState: .Normal)
 		sendButton.setTitleColor(.blackColor(), forState: .Normal)
 		sendButton.addTarget(self, action: "sendButtonSelected:", forControlEvents: .TouchUpInside)
-		sendButton.titleLabel?.font = UIFont.systemFontOfSize(15)
+		sendButton.titleLabel?.font = UIFont.systemFontOfSize(17)
 		sendButtonBarButtonItem = UIBarButtonItem(customView: sendButton)
 		
 		textView.placeholderText = "Type a message..."
@@ -125,6 +125,8 @@ import UIKit
 		textView.layer.cornerRadius = 3
 		textView.delegate = self
 		textView.inputAccessoryView = accessoryView
+        // http://stackoverflow.com/questions/26038082/uitextview-settext-should-not-jump-to-top-in-ios8
+        textView.layoutManager.allowsNonContiguousLayout = false
 		textViewBarButtonItem = UIBarButtonItem(customView: textView)
 		
 		activityIndicatorView.color = .blackColor()
