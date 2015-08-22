@@ -95,7 +95,8 @@ import UIKit
 			var newInset = scrollView.contentInset
             
             // iOS9 automatically adjusts insets of scrollview
-            if UIDevice.currentDevice().systemVersionGreaterOrEqualTo("9") {
+            if  let parentViewController = parentViewController
+                where UIDevice.currentDevice().systemVersionGreaterOrEqualTo("9") && parentViewController.automaticallyAdjustsScrollViewInsets {
                 newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding)
             }
             else {
@@ -125,9 +126,12 @@ import UIKit
 		textView.layer.cornerRadius = 3
 		textView.delegate = self
 		textView.inputAccessoryView = accessoryView
-        // http://stackoverflow.com/questions/26038082/uitextview-settext-should-not-jump-to-top-in-ios8
-        textView.layoutManager.allowsNonContiguousLayout = false
 		textViewBarButtonItem = UIBarButtonItem(customView: textView)
+        
+        if UIDevice.currentDevice().systemVersionLessThan("9") {
+            // http://stackoverflow.com/questions/26038082/uitextview-settext-should-not-jump-to-top-in-ios8
+            textView.layoutManager.allowsNonContiguousLayout = false
+        }
 		
 		activityIndicatorView.color = .blackColor()
 		activityIndicatorView.startAnimating()
@@ -238,10 +242,12 @@ import UIKit
 			let duration: NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0,
 			let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
 				
-				let animationCurveRaw = animationCurveRawNSN.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
-				let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-				let offset: CGFloat = endFrame.origin.y + endFrame.size.height - window.frame.size.height
-				keyboardVisibleHeight = endFrame.size.height - offset;
+                let animationCurveRaw = animationCurveRawNSN.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
+                let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+                let y = endFrame.origin.y == CGFloat.infinity ? 0 : endFrame.origin.y
+                let height = endFrame.size.height == CGFloat.infinity ? 0 : endFrame.size.height
+                let offset: CGFloat = y + height - window.frame.size.height
+                keyboardVisibleHeight = height - offset;
 				
 				UIView.animateWithDuration(duration, delay: 0, options: animationCurve, animations: { [weak self] in
 					
