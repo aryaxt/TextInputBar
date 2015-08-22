@@ -43,6 +43,7 @@ class TextInputAccessoryView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		userInteractionEnabled = false
+        backgroundColor = UIColor.clearColor()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
