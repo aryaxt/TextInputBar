@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fHR-Cd-bhi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Medium</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Chat-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TextInputBar" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,17 +21,110 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qg9-A2-ZM7">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qg9-A2-ZM7">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="test" id="MSx-HM-YRU">
-                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageCell" id="MSx-HM-YRU" customClass="MessageCell" customModule="TextInputBar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MSx-HM-YRU" id="Jpn-as-da5">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RmQ-cZ-rKi">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAO-Si-Zm8">
+                                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="gAO-Si-Zm8" firstAttribute="leading" secondItem="RmQ-cZ-rKi" secondAttribute="leading" constant="2" id="4df-Qh-4s1">
+                                                            <variation key="widthClass=compact" constant="4"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="240" id="IJR-Ol-Ukg">
+                                                            <variation key="widthClass=compact" constant="300"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="trailing" secondItem="gAO-Si-Zm8" secondAttribute="trailing" constant="2" id="gcl-aq-Wnp">
+                                                            <variation key="widthClass=compact" constant="4"/>
+                                                        </constraint>
+                                                        <constraint firstItem="gAO-Si-Zm8" firstAttribute="top" secondItem="RmQ-cZ-rKi" secondAttribute="top" constant="2" id="oYN-qm-5UH">
+                                                            <variation key="widthClass=compact" constant="4"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="bottom" secondItem="gAO-Si-Zm8" secondAttribute="bottom" constant="2" id="uu3-bh-5PD">
+                                                            <variation key="widthClass=compact" constant="4"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="subviews">
+                                                            <exclude reference="gAO-Si-Zm8"/>
+                                                        </mask>
+                                                        <mask key="constraints">
+                                                            <exclude reference="IJR-Ol-Ukg"/>
+                                                            <exclude reference="4df-Qh-4s1"/>
+                                                            <exclude reference="gcl-aq-Wnp"/>
+                                                            <exclude reference="oYN-qm-5UH"/>
+                                                            <exclude reference="uu3-bh-5PD"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="subviews">
+                                                            <include reference="gAO-Si-Zm8"/>
+                                                        </mask>
+                                                        <mask key="constraints">
+                                                            <include reference="IJR-Ol-Ukg"/>
+                                                            <include reference="4df-Qh-4s1"/>
+                                                            <include reference="gcl-aq-Wnp"/>
+                                                            <include reference="oYN-qm-5UH"/>
+                                                            <include reference="uu3-bh-5PD"/>
+                                                        </mask>
+                                                    </variation>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RmQ-cZ-rKi" firstAttribute="top" secondItem="Jpn-as-da5" secondAttribute="top" constant="10" id="5ga-Mo-Qxw"/>
+                                                <constraint firstAttribute="trailing" secondItem="RmQ-cZ-rKi" secondAttribute="trailing" priority="250" constant="10" id="6v2-kY-93F"/>
+                                                <constraint firstAttribute="bottom" secondItem="RmQ-cZ-rKi" secondAttribute="bottom" constant="17" id="9cF-JI-54K">
+                                                    <variation key="widthClass=compact" constant="10"/>
+                                                </constraint>
+                                                <constraint firstItem="RmQ-cZ-rKi" firstAttribute="leading" secondItem="Jpn-as-da5" secondAttribute="leading" constant="10" id="UU2-fx-1tU"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="RmQ-cZ-rKi"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="5ga-Mo-Qxw"/>
+                                                    <exclude reference="6v2-kY-93F"/>
+                                                    <exclude reference="9cF-JI-54K"/>
+                                                    <exclude reference="UU2-fx-1tU"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="RmQ-cZ-rKi"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="5ga-Mo-Qxw"/>
+                                                    <include reference="6v2-kY-93F"/>
+                                                    <include reference="9cF-JI-54K"/>
+                                                    <include reference="UU2-fx-1tU"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="leftLayoutConstraint" destination="UU2-fx-1tU" id="oVz-cC-beG"/>
+                                            <outlet property="messageLabel" destination="gAO-Si-Zm8" id="bOF-lm-o2m"/>
+                                            <outlet property="messageLabelContainerView" destination="RmQ-cZ-rKi" id="CTj-Hu-8o0"/>
+                                            <outlet property="rightLayoutConstraint" destination="6v2-kY-93F" id="Rqw-8n-AAc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -55,6 +153,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Qg9-A2-ZM7" secondAttribute="bottom" id="yog-sN-xtE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Chat" id="e1z-43-B7b"/>
                     <connections>
                         <outlet property="inputbar" destination="zed-Dc-KUn" id="9Rg-kh-7z5"/>
                         <outlet property="tableView" destination="Qg9-A2-ZM7" id="zUf-Av-hM1"/>
@@ -62,6 +161,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="316.5" y="194"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P9C-n9-Zh3">
+            <objects>
+                <navigationController id="fHR-Cd-bhi" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hc0-aR-J47">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Z7w-eD-OKL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hrO-lS-pRS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-397.5" y="194"/>
         </scene>
     </scenes>
 </document>

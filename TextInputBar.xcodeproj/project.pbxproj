@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1587C1FE1B9243A70012F19C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587C1FD1B9243A70012F19C /* MessageCell.swift */; };
+		1587C1FF1B9243A70012F19C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587C1FD1B9243A70012F19C /* MessageCell.swift */; };
+		1587C2001B9243A70012F19C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587C1FD1B9243A70012F19C /* MessageCell.swift */; };
+		1587C2021B92444A0012F19C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587C2011B92444A0012F19C /* Message.swift */; };
+		1587C2031B92444A0012F19C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587C2011B92444A0012F19C /* Message.swift */; };
+		1587C2041B92444A0012F19C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587C2011B92444A0012F19C /* Message.swift */; };
 		15A187151B817F5B00284398 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A187141B817F5B00284398 /* TextInputAccessoryView.swift */; };
 		15A187161B817F5B00284398 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A187141B817F5B00284398 /* TextInputAccessoryView.swift */; };
 		15A187171B817F5B00284398 /* TextInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A187141B817F5B00284398 /* TextInputAccessoryView.swift */; };
@@ -46,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1587C1FD1B9243A70012F19C /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		1587C2011B92444A0012F19C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		15A187141B817F5B00284398 /* TextInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputAccessoryView.swift; sourceTree = "<group>"; };
 		15D926E41B80E4D100AF3437 /* TextInputBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextInputBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D926E71B80E4D100AF3437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +124,8 @@
 				15D927151B80E4E300AF3437 /* Source */,
 				15D926E71B80E4D100AF3437 /* AppDelegate.swift */,
 				15D926E91B80E4D100AF3437 /* ViewController.swift */,
+				1587C1FD1B9243A70012F19C /* MessageCell.swift */,
+				1587C2011B92444A0012F19C /* Message.swift */,
 				15D926EB1B80E4D100AF3437 /* Main.storyboard */,
 				15D926EE1B80E4D100AF3437 /* Assets.xcassets */,
 				15D926F01B80E4D100AF3437 /* LaunchScreen.storyboard */,
@@ -288,7 +298,9 @@
 				15D927191B80E4E300AF3437 /* TextInputbar.swift in Sources */,
 				15D9271C1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
 				15D926EA1B80E4D100AF3437 /* ViewController.swift in Sources */,
+				1587C2021B92444A0012F19C /* Message.swift in Sources */,
 				15D926E81B80E4D100AF3437 /* AppDelegate.swift in Sources */,
+				1587C1FE1B9243A70012F19C /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,9 +310,11 @@
 			files = (
 				15A187161B817F5B00284398 /* TextInputAccessoryView.swift in Sources */,
 				15D926FD1B80E4D100AF3437 /* TextInputBarTests.swift in Sources */,
+				1587C2031B92444A0012F19C /* Message.swift in Sources */,
 				15D9271A1B80E4E300AF3437 /* TextInputbar.swift in Sources */,
 				15D9271D1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
 				15D927201B80E4E300AF3437 /* TextInputTextView.swift in Sources */,
+				1587C1FF1B9243A70012F19C /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,9 +324,11 @@
 			files = (
 				15A187171B817F5B00284398 /* TextInputAccessoryView.swift in Sources */,
 				15D927081B80E4D100AF3437 /* TextInputBarUITests.swift in Sources */,
+				1587C2041B92444A0012F19C /* Message.swift in Sources */,
 				15D9271B1B80E4E300AF3437 /* TextInputbar.swift in Sources */,
 				15D9271E1B80E4E300AF3437 /* TextInputExtensions.swift in Sources */,
 				15D927211B80E4E300AF3437 /* TextInputTextView.swift in Sources */,
+				1587C2001B9243A70012F19C /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

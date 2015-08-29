@@ -12,21 +12,28 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 	
 	@IBOutlet private var inputbar: TextInputbar!
 	@IBOutlet private var tableView: UITableView!
-	private var comments = ["Hello", "Hey this is a test\nThis was posted in multiple lines", "Nice"]
+	private var messages = [Message]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		inputbar.textView.text = "This is a test\nThis is a test\nThis is a test"
+		populateInitialData()
 		
+		inputbar.textView.font = UIFont.systemFontOfSize(16)
 		tableView.estimatedRowHeight = 44
 		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView.separatorStyle = .None
+		tableView.tableFooterView = UIView()
 	}
 	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	// MARK: - Private -
+	
+	func populateInitialData() {
+		messages.append(Message(text: "Hey", isMeAuthor: true))
+		messages.append(Message(text: "What's up?", isMeAuthor: false))
+		messages.append(Message(text: "I love this component, it saves me a lot of time, and it looks great. I use it in all my apps", isMeAuthor: true))
+		messages.append(Message(text: "I'm glad you liked it", isMeAuthor: false))
 	}
 	
 	// MARK: - TextInputToolbarDelegate -
@@ -39,9 +46,9 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 		dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
 			
 			self?.tableView.beginUpdates()
-			let indexPath = NSIndexPath(forRow: self!.comments.count, inSection: 0)
-			self?.comments.append(textInputbar.textView.text)
-			self?.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+			let indexPath = NSIndexPath(forRow: self!.messages.count, inSection: 0)
+			self?.messages.append(Message(text: textInputbar.textView.text, isMeAuthor: true))
+			self?.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
 			self?.tableView.endUpdates()
 			
 			textInputbar.showProgress(false, animated: true)
@@ -52,15 +59,14 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 	// MARK: - UITableViewDataSource -
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return comments.count
+		return messages.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("test")
-		cell?.textLabel?.text = comments[indexPath.row]
-		cell?.textLabel?.font = UIFont.systemFontOfSize(15)
-		cell?.textLabel?.numberOfLines = 0
-		return cell!
+		let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell") as! MessageCell
+		cell.configureWithText(messages[indexPath.row])
+		return cell
 	}
+	
 }
 
