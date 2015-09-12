@@ -95,14 +95,16 @@ import UIKit
 			var newInset = scrollView.contentInset
             
             // iOS9 automatically adjusts insets of scrollview
-            if  let parentViewController = parentViewController
-                where UIDevice.currentDevice().systemVersionGreaterOrEqualTo("9") && parentViewController.automaticallyAdjustsScrollViewInsets {
-                newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding)
-            }
-            else {
-                newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding) + keyboardVisibleHeight
-            }
-            
+//            if  let parentViewController = parentViewController
+//                where UIDevice.currentDevice().systemVersionGreaterOrEqualTo("9") && parentViewController.automaticallyAdjustsScrollViewInsets {
+//                newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding)
+//            }
+//            else {
+//                newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding) + keyboardVisibleHeight
+//            }
+
+			newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding) + keyboardVisibleHeight
+			
 			scrollView.contentInset = newInset
 			scrollView.scrollIndicatorInsets = newInset
 		}

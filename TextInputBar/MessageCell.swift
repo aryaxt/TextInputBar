@@ -29,8 +29,8 @@ public class MessageCell: UITableViewCell {
 	public func configureWithText(message: Message) {
 		messageLabel.text = message.text
 		messageLabelContainerView.backgroundColor = message.isMeAuthor ? blueColor : greenColor
-		leftLayoutConstraint.priority = message.isMeAuthor ? 1000 : 250
-		rightLayoutConstraint.priority = message.isMeAuthor ? 250 : 1000
+		leftLayoutConstraint.priority = message.isMeAuthor ? 750 : 250
+		rightLayoutConstraint.priority = message.isMeAuthor ? 250 : 750
 	}
 	
 }
