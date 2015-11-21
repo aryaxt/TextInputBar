@@ -82,12 +82,18 @@ import UIKit
 		activityIndicatorBarButtonItem.width = sendButtonBarButtonItem.width
 		
         let appropriateTextViewSize = appropriateSizeForTextView()
-        textView.frame = CGRectMake(0, 0, appropriateTextViewSize.width, appropriateTextViewSize.height)
+		textView.frame = CGRectMake(0, 0, appropriateTextViewSize.width, appropriateTextViewSize.height)
+		
+		// This logic is to fix the offset when the toolbar is in a modal presented as formsheet
+		// This works for portrait but not for lansdcape
+		let locationRelativeToWindow = convertRect(frame, fromView: nil)
+		let toolbarOffset = keyboardVisibleHeight > 0 ? keyboardVisibleHeight + locationRelativeToWindow.origin.y : 0
+		print(locationRelativeToWindow)
 		
 		constraintWithAttribute(.Height)?.constant = textView.frame.size.height + textViewPadding * 2
         
         if let bottomGuideConstraint = superview?.constraintWithAttribute(.Bottom, includesView: self) {
-            let constant = bottomGuideConstraint.firstItem === self ? keyboardVisibleHeight * -1 : keyboardVisibleHeight
+            let constant = bottomGuideConstraint.firstItem === self ? toolbarOffset * -1 : toolbarOffset
             bottomGuideConstraint.constant = constant
         }
 		
@@ -103,7 +109,7 @@ import UIKit
 //                newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding) + keyboardVisibleHeight
 //            }
 
-			newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding) + keyboardVisibleHeight
+			newInset.bottom = appropriateTextViewSize.height + (2 * textViewPadding) + toolbarOffset
 			
 			scrollView.contentInset = newInset
 			scrollView.scrollIndicatorInsets = newInset
