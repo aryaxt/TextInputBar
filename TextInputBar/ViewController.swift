@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSource {
 	
-	@IBOutlet private var inputbar: TextInputbar!
-	@IBOutlet private var tableView: UITableView!
-	private var messages = [Message]()
+	@IBOutlet fileprivate var inputbar: TextInputbar!
+	@IBOutlet fileprivate var tableView: UITableView!
+	fileprivate var messages = [Message]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -20,10 +20,10 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 		
 		populateInitialData()
 		
-		inputbar.textView.font = UIFont.systemFontOfSize(16)
+		inputbar.textView.font = UIFont.systemFont(ofSize: 16)
 		tableView.estimatedRowHeight = 44
 		tableView.rowHeight = UITableViewAutomaticDimension
-		tableView.separatorStyle = .None
+		tableView.separatorStyle = .none
 		tableView.tableFooterView = UIView()
 	}
 	
@@ -43,14 +43,14 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 	func textInputBar(didSelectSend textInputbar: TextInputbar) {
 		textInputbar.showProgress(true, animated: true)
 		
-		let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
+		let delayTime = DispatchTime.now() + Double(Int64(3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
 		
-		dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.asyncAfter(deadline: delayTime) { [weak self] in
 			
 			self?.tableView.beginUpdates()
-			let indexPath = NSIndexPath(forRow: self!.messages.count, inSection: 0)
+			let indexPath = IndexPath(row: self!.messages.count, section: 0)
 			self?.messages.append(Message(text: textInputbar.textView.text, isMeAuthor: true))
-			self?.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
+			self?.tableView.insertRows(at: [indexPath], with: .left)
 			self?.tableView.endUpdates()
 			
 			textInputbar.showProgress(false, animated: true)
@@ -60,13 +60,13 @@ class ViewController: UIViewController, TextInputBarDelegate, UITableViewDataSou
 	
 	// MARK: - UITableViewDataSource -
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return messages.count
 	}
 	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell") as! MessageCell
-		cell.configureWithText(messages[indexPath.row])
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
+		cell.configureWithText(messages[(indexPath as NSIndexPath).row])
 		return cell
 	}
 	

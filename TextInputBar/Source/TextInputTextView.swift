@@ -31,15 +31,15 @@ import UIKit
 	func textInputTextView(didSetText textInputTextView: TextInputTextView)
 }
 
-@IBDesignable public class TextInputTextView: UITextView {
+@IBDesignable open class TextInputTextView: UITextView {
 	
-	private var placeholderTextView: UITextView!
-	private var delegateInterceptor: TextInputTextViewDelegate?
+	fileprivate var placeholderTextView: UITextView!
+	fileprivate var delegateInterceptor: TextInputTextViewDelegate?
 	
-	override public var delegate: UITextViewDelegate? {
+	override open var delegate: UITextViewDelegate? {
 		didSet {
 			if let delegate = delegate {
-				let castedDelegate = unsafeBitCast(delegate, TextInputTextViewDelegate.self)
+				let castedDelegate = unsafeBitCast(delegate, to: TextInputTextViewDelegate.self)
 				delegateInterceptor = castedDelegate
 			}
 			else {
@@ -48,19 +48,19 @@ import UIKit
 		}
 	}
 	
-	override public var text: String! {
+	override open var text: String! {
 		didSet {
 			delegateInterceptor?.textInputTextView(didSetText: self)
 		}
 	}
 	
-	@IBInspectable public var placeholderText: String? {
+	@IBInspectable open var placeholderText: String? {
 		didSet {
 			placeholderTextView.text = placeholderText
 		}
 	}
 	
-	@IBInspectable public var placeholderTextColor: UIColor? {
+	@IBInspectable open var placeholderTextColor: UIColor? {
 		didSet {
 			placeholderTextView.textColor = placeholderTextColor
 		}
@@ -78,29 +78,29 @@ import UIKit
 		initialize()
 	}
 	
-	private func initialize() {
+	fileprivate func initialize() {
 		placeholderTextView = UITextView(frame: bounds)
-		placeholderTextView.editable = false
-		placeholderTextView.scrollEnabled = false
-		placeholderTextView.userInteractionEnabled = false
-		placeholderTextView.textColor = UIColor.lightGrayColor()
-		placeholderTextView.backgroundColor = UIColor.clearColor()
+		placeholderTextView.isEditable = false
+		placeholderTextView.isScrollEnabled = false
+		placeholderTextView.isUserInteractionEnabled = false
+		placeholderTextView.textColor = UIColor.lightGray
+		placeholderTextView.backgroundColor = UIColor.clear
 		addSubview(placeholderTextView)
 		
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
-			selector: "textViewDidChangeTextNotification:",
-			name: UITextViewTextDidChangeNotification,
+			selector: #selector(TextInputTextView.textViewDidChangeTextNotification(_:)),
+			name: NSNotification.Name.UITextViewTextDidChange,
 			object: self)
 	}
 	
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		NotificationCenter.default.removeObserver(self)
 	}
 	
 	// MARK: - UIView Methods -
 	
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		super.layoutSubviews()
 		placeholderTextView.frame = bounds
 		placeholderTextView.contentOffset = contentOffset
@@ -111,14 +111,14 @@ import UIKit
 	
 	// MARK: - NSNotification -
 	
-	func textViewDidChangeTextNotification(notification: NSNotification) {
+	func textViewDidChangeTextNotification(_ notification: Notification) {
 		updatePlaceholderVisibility()
 	}
 	
 	// MARK: - Private -
 	
-	private func updatePlaceholderVisibility() {
-		placeholderTextView.hidden = text.isEmpty ? false : true
+	fileprivate func updatePlaceholderVisibility() {
+		placeholderTextView.isHidden = text.isEmpty ? false : true
 	}
 	
 }

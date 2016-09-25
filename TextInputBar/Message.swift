@@ -6,7 +6,7 @@
 //  Copyright © 2015 Aryan Ghassemi. All rights reserved.
 //
 
-public class Message {
+open class Message {
 	
 	let text: String
 	let isMeAuthor: Bool
