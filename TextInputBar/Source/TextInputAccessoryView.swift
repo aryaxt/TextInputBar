@@ -34,16 +34,16 @@ import UIKit
 class TextInputAccessoryView: UIView {
 	
 	weak var delegate: TextInputAccessoryViewDelegate!
-	private var isObserving = false
-	private let keyPathsToObserve = ["frame", "center"]
-	private let myContext = UnsafeMutablePointer<()>()
+	fileprivate var isObserving = false
+	fileprivate let keyPathsToObserve = ["frame", "center"]
+	fileprivate let myContext: UnsafeMutableRawPointer? = nil
 	
 	// MARK: - Initialization -
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		userInteractionEnabled = false
-        backgroundColor = UIColor.clearColor()
+		isUserInteractionEnabled = false
+        backgroundColor = UIColor.clear
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -64,16 +64,16 @@ class TextInputAccessoryView: UIView {
 		}
 	}
 	
-	override func willMoveToSuperview(newSuperview: UIView?) {
+	override func willMove(toSuperview newSuperview: UIView?) {
 		removeObserversIfNeeded()
 		
 		for path in keyPathsToObserve {
-			newSuperview?.addObserver(self, forKeyPath: path, options: .New, context: myContext)
+			newSuperview?.addObserver(self, forKeyPath: path, options: .new, context: myContext)
 		}
 		
 		isObserving = true
 		
-		super.willMoveToSuperview(newSuperview)
+		super.willMove(toSuperview: newSuperview)
 	}
 	
 	// MARK: - Private -
@@ -88,11 +88,11 @@ class TextInputAccessoryView: UIView {
 	
 	// MARK: - KBO -
 	
-	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		
 		if  let keyPath = keyPath,
-			let superview = superview
-			where object === superview && keyPathsToObserve.contains(keyPath) {
+			let superview = superview,
+            object as AnyObject? === superview && keyPathsToObserve.contains(keyPath) {
 				
 			delegate.textInputAccessoryView(didChnageToFrame: superview.frame)
 		}

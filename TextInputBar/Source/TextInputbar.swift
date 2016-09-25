@@ -31,24 +31,24 @@ import UIKit
 	func textInputBar(didSelectSend textInputbar: TextInputbar)
 }
 
-@IBDesignable public class TextInputbar: UIToolbar, TextInputTextViewDelegate, TextInputAccessoryViewDelegate {
+@IBDesignable open class TextInputbar: UIToolbar, TextInputTextViewDelegate, TextInputAccessoryViewDelegate {
 	
-	@IBOutlet public weak var scrollView: UIScrollView?
-	public let textView = TextInputTextView()
-	public let sendButton = UIButton()
-	public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
-	private let textViewPadding: CGFloat = 5
-	private var textViewBarButtonItem: UIBarButtonItem!
-	private var sendButtonBarButtonItem: UIBarButtonItem!
-	private var activityIndicatorBarButtonItem: UIBarButtonItem!
-	private var keyboardVisibleHeight: CGFloat = 0
-	private var delegateInterceptor: TextInputBarDelegate?
-	private let accessoryView = TextInputAccessoryView()
+	@IBOutlet open weak var scrollView: UIScrollView?
+	open let textView = TextInputTextView()
+	open let sendButton = UIButton()
+	open let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+	fileprivate let textViewPadding: CGFloat = 5
+	fileprivate var textViewBarButtonItem: UIBarButtonItem!
+	fileprivate var sendButtonBarButtonItem: UIBarButtonItem!
+	fileprivate var activityIndicatorBarButtonItem: UIBarButtonItem!
+	fileprivate var keyboardVisibleHeight: CGFloat = 0
+	fileprivate var delegateInterceptor: TextInputBarDelegate?
+	fileprivate let accessoryView = TextInputAccessoryView()
 	
-	override public var delegate: UIToolbarDelegate? {
+	override open var delegate: UIToolbarDelegate? {
 		didSet {
 			if let delegate = delegate {
-				let castedDelegate = unsafeBitCast(delegate, TextInputBarDelegate.self)
+				let castedDelegate = unsafeBitCast(delegate, to: TextInputBarDelegate.self)
 				delegateInterceptor = castedDelegate
 			}
 			else {
@@ -57,7 +57,7 @@ import UIKit
 		}
 	}
 	
-	@IBInspectable public var maxTextHeight: CGFloat = 100 {
+	@IBInspectable open var maxTextHeight: CGFloat = 100 {
 		didSet {
 			setNeedsLayout()
 			layoutIfNeeded()
@@ -76,17 +76,17 @@ import UIKit
 		customInitialization()
 	}
 	
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		sendButton.sizeToFit()
 		
 		activityIndicatorBarButtonItem.width = sendButtonBarButtonItem.width
 		
         let appropriateTextViewSize = appropriateSizeForTextView()
-        textView.frame = CGRectMake(0, 0, appropriateTextViewSize.width, appropriateTextViewSize.height)
+        textView.frame = CGRect(x: 0, y: 0, width: appropriateTextViewSize.width, height: appropriateTextViewSize.height)
 		
-		constraintWithAttribute(.Height)?.constant = textView.frame.size.height + textViewPadding * 2
+		constraintWithAttribute(.height)?.constant = textView.frame.size.height + textViewPadding * 2
         
-        if let bottomGuideConstraint = superview?.constraintWithAttribute(.Bottom, includesView: self) {
+        if let bottomGuideConstraint = superview?.constraintWithAttribute(.bottom, includesView: self) {
             let constant = bottomGuideConstraint.firstItem === self ? keyboardVisibleHeight * -1 : keyboardVisibleHeight
             bottomGuideConstraint.constant = constant
         }
@@ -112,55 +112,55 @@ import UIKit
 		super.layoutSubviews()
 	}
 	
-	private func customInitialization() {
+	fileprivate func customInitialization() {
 		
 		accessoryView.delegate = self
 		
-		sendButton .setTitle("Send", forState: .Normal)
-		sendButton.setTitleColor(.blackColor(), forState: .Normal)
-		sendButton.addTarget(self, action: "sendButtonSelected:", forControlEvents: .TouchUpInside)
-		sendButton.titleLabel?.font = UIFont.systemFontOfSize(17)
+		sendButton .setTitle("Send", for: UIControlState())
+		sendButton.setTitleColor(UIColor.black, for: UIControlState())
+		sendButton.addTarget(self, action: #selector(TextInputbar.sendButtonSelected(_:)), for: .touchUpInside)
+		sendButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
 		sendButtonBarButtonItem = UIBarButtonItem(customView: sendButton)
 		
 		textView.placeholderText = "Type a message..."
 		textView.layer.borderWidth = 0.6
-		textView.layer.borderColor = UIColor.lightGrayColor().CGColor
+		textView.layer.borderColor = UIColor.lightGray.cgColor
 		textView.layer.cornerRadius = 3
 		textView.delegate = self
 		textView.inputAccessoryView = accessoryView
 		textViewBarButtonItem = UIBarButtonItem(customView: textView)
         
-        if UIDevice.currentDevice().systemVersionLessThan("9") {
+        if UIDevice.current.systemVersionLessThan("9") {
             // http://stackoverflow.com/questions/26038082/uitextview-settext-should-not-jump-to-top-in-ios8
             textView.layoutManager.allowsNonContiguousLayout = false
         }
 		
-		activityIndicatorView.color = .blackColor()
+		activityIndicatorView.color = UIColor.black
 		activityIndicatorView.startAnimating()
 		activityIndicatorBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
 		
 		setItems([textViewBarButtonItem], animated: false)
 		
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
-			selector: "keyboardWillChangeFrameNotificationRecieved:",
-			name: UIKeyboardWillChangeFrameNotification,
+			selector: #selector(TextInputbar.keyboardWillChangeFrameNotificationRecieved(_:)),
+			name: NSNotification.Name.UIKeyboardWillChangeFrame,
 			object: nil)
 		
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
-			selector: "keyboardWillChangeFrameNotificationRecieved:",
-			name: UIKeyboardWillChangeFrameNotification,
+			selector: #selector(TextInputbar.keyboardWillChangeFrameNotificationRecieved(_:)),
+			name: NSNotification.Name.UIKeyboardWillChangeFrame,
 			object: nil)
 	}
 	
 	deinit {
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		NotificationCenter.default.removeObserver(self)
 	}
 	
 	// MARK: - Public -
 	
-	public func showProgress(progress: Bool, animated: Bool) {
+	open func showProgress(_ progress: Bool, animated: Bool) {
 		let items: [UIBarButtonItem] = progress
 			? [textViewBarButtonItem, activityIndicatorBarButtonItem]
 			: textView.text.isEmpty ? [textViewBarButtonItem, sendButtonBarButtonItem] : [textViewBarButtonItem, sendButtonBarButtonItem]
@@ -170,18 +170,18 @@ import UIKit
 	
 	// MARK: - Private -
     
-    private func appropriateSizeForTextView() -> CGSize {
+    fileprivate func appropriateSizeForTextView() -> CGSize {
         // WTF don't hardcode 35, use constraintWithAttribute instead
         let sendButtonWith: CGFloat = items!.contains(sendButtonBarButtonItem) ? sendButton.frame.size.width : 0
         let activityIndicatorWidth: CGFloat = items!.contains(activityIndicatorBarButtonItem) ? sendButton.frame.size.width : 0
         let textViewWidth: CGFloat = frame.size.width - (sendButtonWith + activityIndicatorWidth) - 35
-        var textViewHeight: CGFloat = textView.sizeThatFits(CGSizeMake(textViewWidth, CGFloat.max)).height
+        var textViewHeight: CGFloat = textView.sizeThatFits(CGSize(width: textViewWidth, height: CGFloat.greatestFiniteMagnitude)).height
         textViewHeight = textViewHeight > maxTextHeight ? maxTextHeight : textViewHeight
         
-        return CGSizeMake(textViewWidth, textViewHeight)
+        return CGSize(width: textViewWidth, height: textViewHeight)
     }
 	
-	private func updateStateBasedOnTextChange() {
+	fileprivate func updateStateBasedOnTextChange() {
 		let newItems: [UIBarButtonItem]
 		
 		if textView.text.isEmpty {
@@ -195,17 +195,17 @@ import UIKit
 			setItems(newItems, animated: true)
 		}
 
-        if !CGSizeEqualToSize(textView.frame.size, appropriateSizeForTextView()) {
-            UIView.animateWithDuration(0.15) { [weak self] in
+        if !textView.frame.size.equalTo(appropriateSizeForTextView()) {
+            UIView.animate(withDuration: 0.15, animations: { [weak self] in
                 self?.setNeedsLayout()
                 self?.layoutIfNeeded()
-            }
+            }) 
         }
 	}
 	
 	// MARK: - TextInputAccessoryViewDelegate -
 	
-	public func textInputAccessoryView(didChnageToFrame rect: CGRect) {
+	open func textInputAccessoryView(didChnageToFrame rect: CGRect) {
 		
 		if let window = superview?.window {
 			keyboardVisibleHeight = window.frame.size.height - (rect.origin.y)
@@ -216,42 +216,42 @@ import UIKit
 	
 	// MARK: - Actions -
 	
-	func sendButtonSelected(sender: UIButton) {
+	func sendButtonSelected(_ sender: UIButton) {
 		delegateInterceptor?.textInputBar(didSelectSend: self)
 	}
 	
 	// MARK: - TextInputTextViewDelegate -
 	
-	public func textViewDidChange(textView: UITextView) {
+	open func textViewDidChange(_ textView: UITextView) {
 		updateStateBasedOnTextChange()
 	}
 	
-	public func textInputTextView(didSetText textInputTextView: TextInputTextView) {
+	open func textInputTextView(didSetText textInputTextView: TextInputTextView) {
 		updateStateBasedOnTextChange()
 	}
 	
-	public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+	open func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 		return !items!.contains(activityIndicatorBarButtonItem)
 	}
 	
 	// MARK: - NSNotification -
 	
-	func keyboardWillChangeFrameNotificationRecieved(note: NSNotification) {
+	func keyboardWillChangeFrameNotificationRecieved(_ note: Notification) {
 		
-		if  let userInfo = note.userInfo,
+		if  let userInfo = (note as NSNotification).userInfo,
 			let window = window,
-			let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
-			let duration: NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0,
+			let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+			let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0,
 			let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
 				
-                let animationCurveRaw = animationCurveRawNSN.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
+                let animationCurveRaw = animationCurveRawNSN.uintValue ?? UIViewAnimationOptions().rawValue
                 let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
                 let y = endFrame.origin.y == CGFloat.infinity ? 0 : endFrame.origin.y
                 let height = endFrame.size.height == CGFloat.infinity ? 0 : endFrame.size.height
                 let offset: CGFloat = y + height - window.frame.size.height
                 keyboardVisibleHeight = height - offset;
 				
-				UIView.animateWithDuration(duration, delay: 0, options: animationCurve, animations: { [weak self] in
+				UIView.animate(withDuration: duration, delay: 0, options: animationCurve, animations: { [weak self] in
 					
 					self?.setNeedsLayout()
 					self?.layoutIfNeeded()

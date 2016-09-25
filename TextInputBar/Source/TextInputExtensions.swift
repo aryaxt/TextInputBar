@@ -29,7 +29,7 @@ import UIKit
 
 extension UIView {
 	
-    func constraintWithAttribute(attribute: NSLayoutAttribute, includesView: UIView? = nil) -> NSLayoutConstraint? {
+    func constraintWithAttribute(_ attribute: NSLayoutAttribute, includesView: UIView? = nil) -> NSLayoutConstraint? {
         for constraint in constraints  {
             if constraint.firstAttribute == attribute || constraint.secondAttribute == attribute {
                 
@@ -52,7 +52,7 @@ extension UIView {
         var parentResponder: UIResponder? = self
         
         while parentResponder != nil {
-            parentResponder = parentResponder!.nextResponder()
+            parentResponder = parentResponder!.next
             
             if let viewController = parentResponder as? UIViewController {
                 return viewController
@@ -66,14 +66,14 @@ extension UIView {
 
 extension UIDevice {
     
-    func systemVersionGreaterOrEqualTo(version: String) -> Bool {
-        return UIDevice.currentDevice().systemVersion.compare(version,
-            options: NSStringCompareOptions.NumericSearch) != NSComparisonResult.OrderedAscending
+    func systemVersionGreaterOrEqualTo(_ version: String) -> Bool {
+        return UIDevice.current.systemVersion.compare(version,
+            options: NSString.CompareOptions.numeric) != ComparisonResult.orderedAscending
     }
     
-    func systemVersionLessThan(version: String) -> Bool {
-        return UIDevice.currentDevice().systemVersion.compare(version,
-            options: NSStringCompareOptions.NumericSearch) == NSComparisonResult.OrderedAscending
+    func systemVersionLessThan(_ version: String) -> Bool {
+        return UIDevice.current.systemVersion.compare(version,
+            options: NSString.CompareOptions.numeric) == ComparisonResult.orderedAscending
     }
     
 }
